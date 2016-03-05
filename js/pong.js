@@ -39,6 +39,13 @@ function Game() {
       console.log('p1:', JSON.stringify(self.p1), 'top:', self.p1.top(), 'bottom:', self.p1.bottom(), 'left:', self.p1.left(), 'right:', self.p1.right());
       console.log('p2:', JSON.stringify(self.p2), 'top:', self.p2.top(), 'bottom:', self.p2.bottom(), 'left:', self.p2.left(), 'right:', self.p2.right());
 
+      if(touch.x < self.width / 2) {
+        self.p1.y += touch.offset.y;
+      } else if(touch.x > self.width / 2) {
+        self.p2.y += touch.offset.y;
+      }
+
+/*
       if(touch.y >= self.p1.top() - TOUCH_BUFFER && touch.y <= self.p1.bottom() + TOUCH_BUFFER) {
         if(touch.x >= self.p1.left() - TOUCH_BUFFER && touch.x <= self.p1.right() + TOUCH_BUFFER) {
           self.p1.y += touch.offset.y;
@@ -48,7 +55,7 @@ function Game() {
           console.log('moving p2');
           self.p2.y += touch.offset.y;
         }
-      }
+      }*/
     };
 
     this.ball = new Ball();
