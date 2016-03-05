@@ -1,3 +1,7 @@
+// CONSTANTS
+
+var PAUSE_KEY = 112;
+
 // GAME
 
 function Game() {
@@ -7,6 +11,19 @@ function Game() {
     this.context = canvas.getContext("2d");
     this.context.fillStyle = "white";
     this.keys = new KeyListener();
+    this.touches = new TouchListener(canvas);
+
+    var self = this;
+
+    this.keys.addKeyPressListener(PAUSE_KEY, function(e) {
+      if(self.paused) {
+        self.paused = false;
+      } else {
+        self.paused = true;
+      }
+    });
+
+    this.paused = false;
 
     this.p1 = new Paddle(5, 0);
     this.p1.y = this.height/2 - this.p1.height/2;
@@ -92,12 +109,14 @@ Game.prototype.update = function()
         this.ball.vy = -this.ball.vy;
     }
 
+    /*
     if (this.ball.x > this.width || this.ball.x + this.ball.width < 0) {
         this.ball.vx = -this.ball.vx;
     } else if (this.ball.y > this.height || this.ball.y + this.ball.height < 0) {
         this.ball.vy = -this.ball.vy;
-    }
+    }*/
 
+    // Scoring
     if (this.ball.x >= this.width)
         this.score(this.p1);
     else if (this.ball.x + this.ball.width <= 0)
@@ -119,6 +138,30 @@ Game.prototype.score = function(p)
     this.ball.vx = 7 - Math.abs(this.ball.vy);
     if (player == 1)
         this.ball.vx *= -1;
+};
+
+// BALL
+
+function Ball() {
+    this.x = 0;
+    this.y = 0;
+    this.vx = 0;
+    this.vy = 0;
+    this.width = 5;
+    this.height = 5;
+    this.radius = 3;
+}
+
+Ball.prototype.update = function () {
+    this.x += this.vx;
+    this.y += this.vy;
+};
+
+Ball.prototype.draw = function (p) {
+    p.beginPath();
+    p.arc(this.x + this.radius, this.y + this.radius, this.radius, 0, 2 * Math.PI, false);
+    p.closePath();
+    p.fill();
 };
 
 // PADDLE
@@ -161,36 +204,45 @@ KeyListener.prototype.isPressed = function(key)
 KeyListener.prototype.addKeyPressListener = function(keyCode, callback)
 {
     document.addEventListener("keypress", function(e) {
-        if (e.keyCode == keyCode)
+        if (e.keyCode == keyCode) {
             callback(e);
+        }
     });
 };
 
-// BALL
+// TOUCH LISTENER
 
-function Ball() {
-    this.x = 0;
-    this.y = 0;
-    this.vx = 0;
-    this.vy = 0;
-    this.width = 5;
-    this.height = 5;
-    this.radius = 3;
+function TouchListener(element) {
+    this.touches = [];
+    this.touchMoveListener = function(touch) {};
+
+    element.addEventListener("touchstart", (function(e) {
+        e.preventDefault();
+        for (var i = 0; i < e.changedTouches.length; i++) {
+            var touch = e.changedTouches[i];
+            this.touches[touch.identifier] = {x: touch.clientX, y: touch.clientY};
+        }
+    }).bind(this));
+
+    element.addEventListener("touchmove", (function(e) {
+        e.preventDefault();
+        for (var i = 0; i < e.changedTouches.length; i++) {
+            var touch = e.changedTouches[i];
+            var previousTouch = this.touches[touch.identifier];
+            this.touches[touch.identifier] = {x: touch.clientX, y: touch.clientY};
+
+            var offset = {x: touch.clientX - previousTouch.x, y: touch.clientY - previousTouch.y};
+            this.touchMoveListener({x: touch.clientX, y: touch.clientY, offset: offset});
+        }
+    }).bind(this));
+
+    element.addEventListener("touchend", (function(e) {
+        e.preventDefault();
+        for (var i = 0; i < e.changedTouches.length; i++) {
+            delete this.touches[e.changedTouches[i].identifier];
+        }
+    }).bind(this));
 }
-
-Ball.prototype.update = function()
-{
-    this.x += this.vx;
-    this.y += this.vy;
-};
-
-Ball.prototype.draw = function(p)
-{
-    p.beginPath();
-    p.arc(this.x + this.radius, this.y + this.radius, this.radius, 0, 2 * Math.PI, false);
-    p.closePath();
-    p.fill();
-};
 
 // DISPLAY
 
