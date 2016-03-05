@@ -27,11 +27,11 @@ function Game() {
 
     this.p1 = new Paddle(5, 0);
     this.p1.y = this.height/2 - this.p1.height/2;
-    this.display1 = new Display(this.width/4, 25);
+    this.display1 = new Display(this.width/4, 35);
 
-    this.p2 = new Paddle(this.width - 5 - 2, 0);
+    this.p2 = new Paddle(this.width - 5 - 10, 0);
     this.p2.y = this.height/2 - this.p2.height/2;
-    this.display2 = new Display(this.width*3/4, 25);
+    this.display2 = new Display(this.width*3/4, 35);
 
     this.ball = new Ball();
     this.ball.x = this.width/2;
@@ -169,8 +169,8 @@ Ball.prototype.draw = function (p) {
 function Paddle(x,y) {
     this.x = x;
     this.y = y;
-    this.width = 2;
-    this.height = 28;
+    this.width = 10;
+    this.height = 60;
     this.score = 0;
 }
 
@@ -255,6 +255,7 @@ function Display(x, y) {
 Display.prototype.draw = function(p)
 {
     p.fillText(this.value, this.x, this.y);
+    p.font="30px Verdana";
 };
 
 
