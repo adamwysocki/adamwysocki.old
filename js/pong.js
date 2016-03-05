@@ -36,36 +36,18 @@ function Game() {
 
     this.touches.touchMoveListener = function(touch) {
       if(touch.x < self.width / 2) {
-
         if(touch.offset.y < 0) {
           self.p1.y = Math.max(0, self.p1.y + touch.offset.y);
         } else {
           self.p1.y = Math.min(self.height - self.p1.height, self.p1.y + touch.offset.y);
         }
-
-
       } else if(touch.x > self.width / 2) {
-
         if(touch.offset.y < 0) {
           self.p2.y = Math.max(0, self.p2.y + touch.offset.y);
         } else {
           self.p2.y = Math.min(self.height - self.p2.height, self.p2.y + touch.offset.y);
         }
-
-
       }
-
-/*
-      if(touch.y >= self.p1.top() - TOUCH_BUFFER && touch.y <= self.p1.bottom() + TOUCH_BUFFER) {
-        if(touch.x >= self.p1.left() - TOUCH_BUFFER && touch.x <= self.p1.right() + TOUCH_BUFFER) {
-          self.p1.y += touch.offset.y;
-        }
-      } else if(touch.y >= self.p2.top() - TOUCH_BUFFER && touch.y <= self.p2.bottom() + TOUCH_BUFFER) {
-        if(touch.x >= self.p2.left() - TOUCH_BUFFER && touch.x <= self.p2.right() + TOUCH_BUFFER) {
-          console.log('moving p2');
-          self.p2.y += touch.offset.y;
-        }
-      }*/
     };
 
     this.ball = new Ball();

@@ -1,4 +1,6 @@
 {
-  "display":      "standalone",
+  "name": "PONG",
+  "start_url": "index.html",
+  "display":      "fullscreen",
   "orientation":  "landscape"
 }
