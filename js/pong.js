@@ -147,9 +147,9 @@ function Ball() {
     this.y = 0;
     this.vx = 0;
     this.vy = 0;
-    this.width = 5;
-    this.height = 5;
-    this.radius = 3;
+    this.width = 10;
+    this.height = 10;
+    this.radius = 6;
 }
 
 Ball.prototype.update = function () {
