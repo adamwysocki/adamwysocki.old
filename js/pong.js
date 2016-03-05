@@ -1,6 +1,7 @@
 // CONSTANTS
 
 var PAUSE_KEY = 112;
+var TOUCH_BUFFER = 50;
 
 // GAME
 
@@ -32,6 +33,23 @@ function Game() {
     this.p2 = new Paddle(this.width - 5 - 10, 0);
     this.p2.y = this.height/2 - this.p2.height/2;
     this.display2 = new Display(this.width*3/4, 35);
+
+    this.touches.touchMoveListener = function(touch) {
+      console.log('touch:', JSON.stringify(touch, null, 2));
+      console.log('p1:', JSON.stringify(self.p1), 'top:', self.p1.top(), 'bottom:', self.p1.bottom(), 'left:', self.p1.left(), 'right:', self.p1.right());
+      console.log('p2:', JSON.stringify(self.p2), 'top:', self.p2.top(), 'bottom:', self.p2.bottom(), 'left:', self.p2.left(), 'right:', self.p2.right());
+
+      if(touch.y >= self.p1.top() - TOUCH_BUFFER && touch.y <= self.p1.bottom() + TOUCH_BUFFER) {
+        if(touch.x >= self.p1.left() - TOUCH_BUFFER && touch.x <= self.p1.right() + TOUCH_BUFFER) {
+          self.p1.y += touch.offset.y;
+        }
+      } else if(touch.y >= self.p2.top() - TOUCH_BUFFER && touch.y <= self.p2.bottom() + TOUCH_BUFFER) {
+        if(touch.x >= self.p2.left() - TOUCH_BUFFER && touch.x <= self.p2.right() + TOUCH_BUFFER) {
+          console.log('moving p2');
+          self.p2.y += touch.offset.y;
+        }
+      }
+    };
 
     this.ball = new Ball();
     this.ball.x = this.width/2;
@@ -179,6 +197,27 @@ Paddle.prototype.draw = function(p)
     p.fillRect(this.x, this.y, this.width, this.height);
 };
 
+Paddle.prototype.top = function()
+{
+    return this.y - this.height / 2;
+};
+
+Paddle.prototype.bottom = function()
+{
+    return this.y + this.height / 2;
+};
+
+Paddle.prototype.left = function()
+{
+    return this.x - this.width / 2;
+};
+
+Paddle.prototype.right = function()
+{
+    return this.x + this.width / 2;
+};
+
+
 // KEY LISTENER
 
 function KeyListener() {
@@ -258,16 +297,13 @@ Display.prototype.draw = function(p)
     p.font="30px Verdana";
 };
 
-
 // Initialize our game instance
 var game = new Game();
 
-function MainLoop() {
+function step(timestamp) {
+    requestAnimationFrame(step);
     game.update();
     game.draw();
-    // Call the main loop again at a frame rate of 30fps
-    setTimeout(MainLoop, 33.3333);
 }
 
-// Start the game execution
-MainLoop();
+window.requestAnimationFrame(step);
