@@ -35,14 +35,24 @@ function Game() {
     this.display2 = new Display(this.width*3/4, 35);
 
     this.touches.touchMoveListener = function(touch) {
-      console.log('touch:', JSON.stringify(touch, null, 2));
-      console.log('p1:', JSON.stringify(self.p1), 'top:', self.p1.top(), 'bottom:', self.p1.bottom(), 'left:', self.p1.left(), 'right:', self.p1.right());
-      console.log('p2:', JSON.stringify(self.p2), 'top:', self.p2.top(), 'bottom:', self.p2.bottom(), 'left:', self.p2.left(), 'right:', self.p2.right());
-
       if(touch.x < self.width / 2) {
-        self.p1.y += touch.offset.y;
+
+        if(touch.offset.y < 0) {
+          self.p1.y = Math.max(0, self.p1.y + touch.offset.y);
+        } else {
+          self.p1.y = Math.min(self.height - self.p1.height, self.p1.y + touch.offset.y);
+        }
+
+
       } else if(touch.x > self.width / 2) {
-        self.p2.y += touch.offset.y;
+
+        if(touch.offset.y < 0) {
+          self.p2.y = Math.max(0, self.p2.y + touch.offset.y);
+        } else {
+          self.p2.y = Math.min(self.height - self.p2.height, self.p2.y + touch.offset.y);
+        }
+
+
       }
 
 /*
