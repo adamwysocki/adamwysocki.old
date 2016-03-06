@@ -1,0 +1,23 @@
+{
+  "name": "game1",
+  "version": "1.0.0",
+  "description": "PONG",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "crunchicorn js/pong.js dist/pong.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamwysocki/adamwysocki.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamwysocki/adamwysocki.github.io/issues"
+  },
+  "homepage": "https://github.com/adamwysocki/adamwysocki.github.io#readme",
+  "devDependencies": {
+    "crunchicorn": "0.0.2"
+  }
+}
