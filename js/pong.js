@@ -59,7 +59,14 @@ function resizeWindow() {
   game.draw();
 }
 
+function doOnOrientationChange()
+{
+  resizeWindow();
+}
+
 resizeWindow();
+
+window.addEventListener('orientationchange', doOnOrientationChange);
 
 
 window.addEventListener('resize', function(){
