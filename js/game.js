@@ -23,17 +23,16 @@ function Game() {
   this.touches              = new TouchListener(canvas);
   this.collisions           = new CollisionDetector();
 
-  const self = this;
-
-  this.keys.addKeyPressListener(PAUSE_KEY, function(e) {
-    if(self.paused) {
-      self.paused = false;
+  this.keys.addKeyPressListener(PAUSE_KEY, (e) => {
+    this.showMenu();
+    if(this.paused) {
+      this.paused = false;
     } else {
-      self.paused = true;
+      this.paused = true;
     }
   });
 
-  this.paused = false;
+  this.paused = true;
 
   this.p1 = new Paddle(5, 0);
   this.p1.y = this.height/2 - this.p1.height/2;
@@ -43,18 +42,27 @@ function Game() {
   this.p2.y = this.height/2 - this.p2.height/2;
   this.display2 = new Display(this.width*3/4, 35);
 
-  this.touches.touchMoveListener = function(touch) {
-    if(touch.x < self.width / 2) {
+  this.displayPaused = new Display(this.width/2 - 20, this.height/2 - 10);
+
+  this.touches.doubleTapListener = function() {
+    if(!this.paused) {
+      this.showMenu();
+      this.paused = true;
+    }
+  };
+
+  this.touches.touchMoveListener = (touch) => {
+    if(touch.x < this.width / 2) {
       if(touch.offset.y < 0) {
-        self.p1.y = Math.max(0, self.p1.y + touch.offset.y);
+        this.p1.y = Math.max(0, this.p1.y + touch.offset.y);
       } else {
-        self.p1.y = Math.min(self.height - self.p1.height, self.p1.y + touch.offset.y);
+        this.p1.y = Math.min(this.height - this.p1.height, this.p1.y + touch.offset.y);
       }
-    } else if(touch.x > self.width / 2) {
+    } else if(touch.x > this.width / 2) {
       if(touch.offset.y < 0) {
-        self.p2.y = Math.max(0, self.p2.y + touch.offset.y);
+        this.p2.y = Math.max(0, this.p2.y + touch.offset.y);
       } else {
-        self.p2.y = Math.min(self.height - self.p2.height, self.p2.y + touch.offset.y);
+        this.p2.y = Math.min(this.height - this.p2.height, this.p2.y + touch.offset.y);
       }
     }
   };
@@ -65,6 +73,32 @@ function Game() {
   this.ball.vy = Math.floor(Math.random()*8 - 6);
   this.ball.vx = 7 - Math.abs(this.ball.vy);
 }
+
+Game.prototype.resetGame = function() {
+
+  this.p1.score = 0;
+  this.p2.score = 0;
+
+  this.p1.y = this.height/2 - this.p1.height/2;
+  this.p2.y = this.height/2 - this.p2.height/2;
+
+  this.ball.x = this.width/2;
+  this.ball.y = this.height/2;
+  this.ball.vy = Math.floor(Math.random()*8 - 6);
+  this.ball.vx = 7 - Math.abs(this.ball.vy);
+
+};
+
+Game.prototype.showMenu = function() {
+  const menu = document.getElementById('menu');
+
+  if(this.paused) {
+    menu.style.visibility = "hidden";
+  } else {
+    menu.style.visibility = "visible";
+  }
+
+};
 
 Game.prototype.draw = function() {
   this.context.clearRect(0, 0, this.width, this.height);

@@ -5,6 +5,9 @@
 function TouchListener(element) {
   this.touches = [];
   this.touchMoveListener = function(touch) {};
+  this.doubleTapListener = function() {};
+  this.timeout = 0;
+  this.lastTap = 0;
 
   element.addEventListener("touchstart", (function(e) {
     e.preventDefault();
@@ -29,10 +32,28 @@ function TouchListener(element) {
   }).bind(this));
 
   element.addEventListener("touchend", (function(e) {
-    e.preventDefault();
-    for (var i = 0; i < e.changedTouches.length; i++) {
+
+    for (let i = 0; i < e.changedTouches.length; i++) {
       delete this.touches[e.changedTouches[i].identifier];
     }
+
+    let currentTime   = new Date().getTime();
+    let tapLength     = currentTime - lastTap;
+
+    clearTimeout(timeout);
+
+    if (tapLength < 500 && tapLength > 0) {
+        // this was a double tap
+        this.doubleTapListener();
+        event.preventDefault();
+    } else {
+        timeout = setTimeout(function() {
+            clearTimeout(timeout);
+        }, 500);
+    }
+
+    lastTap = currentTime;
+
   }).bind(this));
 }
 

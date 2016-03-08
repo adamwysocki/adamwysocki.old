@@ -21,8 +21,8 @@ CollisionDetector.prototype.collideRect = function(collider, collidee) {
     const r2 = collidee.getRight();
     const b2 = collidee.getBottom();
 
-    console.log('l1:',l1,'t1:',t1,'r1:',r1,'b1:',
-                 b1,'l2:',l2,'t2:',t2,'r2:',r2,'b2:',b2);
+    //console.log('l1:',l1,'t1:',t1,'r1:',r1,'b1:',
+    //             b1,'l2:',l2,'t2:',t2,'r2:',r2,'b2:',b2);
 
     // If the any of the edges are beyond any of the
     // others, then we know that the box cannot be
