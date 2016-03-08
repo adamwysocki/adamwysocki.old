@@ -42,13 +42,10 @@ function resizeWindow() {
 
   var newDimensions = "width:" + newWidth + "height:" + newHeight;
 
-  console.log('resume width:', document.getElementById('resume-game').style.width);
-
   var newLeft = "left:" + (Math.abs(w / 2) - 150) + "px;";
   var newLeft2 = "left:" + (Math.abs(w / 2) - 150) + "px;";
 
   document.getElementById('wrapper').setAttribute('style', newDimensions);
-
   document.getElementById('title').setAttribute('style', newLeft);
   document.getElementById('new-game').setAttribute('style', newLeft2);
   document.getElementById('resume-game').setAttribute('style', newLeft2);
@@ -59,15 +56,11 @@ function resizeWindow() {
   game.draw();
 }
 
-function doOnOrientationChange()
-{
-  resizeWindow();
-}
-
 resizeWindow();
 
-window.addEventListener('orientationchange', doOnOrientationChange);
-
+window.addEventListener('orientationchange', function() {
+  resizeWindow();
+});
 
 window.addEventListener('resize', function(){
   resizeWindow();
