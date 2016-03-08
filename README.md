@@ -1,1 +1,3 @@
 PONG
+
+"npm run build"
