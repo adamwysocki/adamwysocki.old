@@ -19,14 +19,24 @@
   position: absolute;
 }
 
+html {
+  overflow: hidden;
+}
 
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 h1 {
   min-width: 300px;
+  max-width: 300px;
+  text-align: center;
+  position: relative;
+  top: 0;
+  left: 40px;
+  margin-bottom: 10px;
   font-size: 72px;
   color: #aaa;
   text-shadow: #aaa 0 0 10px;
@@ -39,12 +49,12 @@ button {
   padding: 20px;
   border: 0;
   position: relative;
-  top: 15px;
+  top: 0;
   left: 370px;
 }
 
 button:disabled, button:disabled:hover {
-  opacity: 0.65;
+  opacity: 0.45;
   cursor: not-allowed;
 }
 

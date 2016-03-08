@@ -19,6 +19,9 @@ function TouchListener(element) {
 
   element.addEventListener("touchmove", (function(e) {
     e.preventDefault();
+
+    clearTimeout(this.timeout);
+    
     for (var i = 0; i < e.changedTouches.length; i++) {
       var touch = e.changedTouches[i];
       var previousTouch = this.touches[touch.identifier];
@@ -32,6 +35,7 @@ function TouchListener(element) {
   }).bind(this));
 
   element.addEventListener("touchend", (function(e) {
+    event.preventDefault();
 
     for (let i = 0; i < e.changedTouches.length; i++) {
       delete this.touches[e.changedTouches[i].identifier];
@@ -45,7 +49,6 @@ function TouchListener(element) {
     if (tapLength < 500 && tapLength > 0) {
         // this was a double tap
         this.doubleTapListener();
-        event.preventDefault();
     } else {
         this.timeout = setTimeout(function() {
             clearTimeout(this.timeout);

@@ -116,6 +116,18 @@ Game.prototype.draw = function() {
   this.display2.draw(this.context);
 };
 
+Game.prototype.resize = function() {
+  const canvas              = document.getElementById("game");
+  this.context              = canvas.getContext("2d");
+  this.context.fillStyle    = "white";
+
+  this.display1.resize(this.width/4);
+  this.display2.resize(this.width*3/4);
+
+  this.p2.resize((this.width - 5) - 10);
+  this.p2.draw(this.context);
+};
+
 Game.prototype.inputs = function() {
 
   if (this.paused) {

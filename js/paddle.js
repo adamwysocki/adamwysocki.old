@@ -13,6 +13,10 @@ function Paddle(x,y) {
     this.restitution = 1.1;
 }
 
+Paddle.prototype.resize = function(newX) {
+  this.x = newX;
+};
+
 Paddle.prototype.draw = function(p) {
   p.fillRect(this.x, this.y, this.width, this.height);
 };
