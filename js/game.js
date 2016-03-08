@@ -44,7 +44,7 @@ function Game() {
 
   this.displayPaused = new Display(this.width/2 - 20, this.height/2 - 10);
 
-  this.touches.doubleTapListener = function() {
+  this.touches.doubleTapListener = () => {
     if(!this.paused) {
       this.showMenu();
       this.paused = true;

@@ -38,21 +38,21 @@ function TouchListener(element) {
     }
 
     let currentTime   = new Date().getTime();
-    let tapLength     = currentTime - lastTap;
+    let tapLength     = currentTime - this.lastTap;
 
-    clearTimeout(timeout);
+    clearTimeout(this.timeout);
 
     if (tapLength < 500 && tapLength > 0) {
         // this was a double tap
         this.doubleTapListener();
         event.preventDefault();
     } else {
-        timeout = setTimeout(function() {
-            clearTimeout(timeout);
+        this.timeout = setTimeout(function() {
+            clearTimeout(this.timeout);
         }, 500);
     }
 
-    lastTap = currentTime;
+    this.lastTap = currentTime;
 
   }).bind(this));
 }
