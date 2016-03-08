@@ -4,9 +4,8 @@
 import Game from './game.js';
 
 // Initialize the game instance
-const game = new Game();
-
-let afID = null;
+const game  = new Game();
+let   afID  = null;
 
 function step(timestamp) {
   afID = requestAnimationFrame(step);
@@ -21,10 +20,10 @@ document.getElementById('resume-game').onclick = function() {
 };
 
 document.getElementById('new-game').onclick = function() {
+  document.getElementById('resume-game').disabled = false;
   game.resetGame();
   game.showMenu();
   game.paused = false;
 };
-
 
 afID = window.requestAnimationFrame(step);

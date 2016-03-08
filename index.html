@@ -7,13 +7,16 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div id="wrapper">
+        <div class="wrapper">
           <canvas id="game" class="game-canvas" width="1024" height="600"></canvas>
           <div id="menu" class="game-menu">
             <h1 style="position:relative;top:50px;left:400px;padding-left:12px;">PONG</h1>
-            <button id="new-game" class="button_example" style="position:relative;top:15px;left:370px;">NEW GAME</button><br/><br/>
-            <button id="resume-game" class="button_example" style="background-color: #999; position:relative;top:15px;left:370px;">RESUME GAME</button>
+            <button id="new-game" class="menu-button">NEW GAME</button><br/><br/>
+            <button id="resume-game" class="menu-button">RESUME GAME</button>
           </div>
         </div>
+        <script>
+          document.getElementById('resume-game').disabled = true;
+        </script>
     </body>
 </html>

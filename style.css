@@ -1,4 +1,4 @@
-#wrapper {
+.wrapper {
   position: relative;
   width: 1024px;
   height: 600px;
@@ -45,9 +45,17 @@ button {
   font-size: 30px;
   padding: 20px;
   border: 0;
+  position: relative;
+  top: 15px;
+  left: 370px;
 }
 
-.button_example{
+button:disabled, button:disabled:hover {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.menu-button{
  border: 1px solid #25729a;
  -webkit-border-radius: 3px;
  -moz-border-radius: 3px;
@@ -64,15 +72,18 @@ button {
  background-image: -moz-linear-gradient(top, #3093c7, #1c5a85);
  background-image: -ms-linear-gradient(top, #3093c7, #1c5a85);
  background-image: -o-linear-gradient(top, #3093c7, #1c5a85);
- background-image: linear-gradient(to bottom, #3093c7, #1c5a85);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#3093c7, endColorstr=#1c5a85);
+ background-image: linear-gradient(to bottom, #3093c7, #1c5a85);
+ filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#3093c7, endColorstr=#1c5a85);
 }
 
-.button_example:hover{
- border:1px solid #1c5675;
- background-color: #26759e; background-image: -webkit-gradient(linear, left top, left bottom, from(#26759e), to(#133d5b));
+.menu-button:hover:enabled{
+ border: 1px solid #1c5675;
+ background-color: #26759e;
+ background-image: -webkit-gradient(linear, left top, left bottom, from(#26759e), to(#133d5b));
  background-image: -webkit-linear-gradient(top, #26759e, #133d5b);
  background-image: -moz-linear-gradient(top, #26759e, #133d5b);
  background-image: -ms-linear-gradient(top, #26759e, #133d5b);
  background-image: -o-linear-gradient(top, #26759e, #133d5b);
- background-image: linear-gradient(to bottom, #26759e, #133d5b);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#26759e, endColorstr=#133d5b);
+ background-image: linear-gradient(to bottom, #26759e, #133d5b);
+ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#26759e, endColorstr=#133d5b);
 }
