@@ -12,6 +12,9 @@ import Display from './display.js';
 
 // CONSTANTS
 const PAUSE_KEY = 112;
+const INITIAL_SPEED = 2;
+const INITIAL_SPEED_OFFSET = 4;
+
 
 function Game() {
   const canvas              = document.getElementById("game");
@@ -70,8 +73,8 @@ function Game() {
   this.ball = new Ball();
   this.ball.x = this.width/2;
   this.ball.y = this.height/2;
-  this.ball.vy = Math.floor(Math.random()*8 - 6);
-  this.ball.vx = 7 - Math.abs(this.ball.vy);
+  this.ball.vy = Math.floor(Math.random()*INITIAL_SPEED - INITIAL_SPEED_OFFSET);
+  this.ball.vx = INITIAL_SPEED - Math.abs(this.ball.vy);
 }
 
 Game.prototype.resetGame = function() {
@@ -84,8 +87,8 @@ Game.prototype.resetGame = function() {
 
   this.ball.x = this.width/2;
   this.ball.y = this.height/2;
-  this.ball.vy = Math.floor(Math.random()*8 - 6);
-  this.ball.vx = 7 - Math.abs(this.ball.vy);
+  this.ball.vy = Math.floor(Math.random()*INITIAL_SPEED - INITIAL_SPEED_OFFSET);
+  this.ball.vx = INITIAL_SPEED - Math.abs(this.ball.vy);
 
 };
 
@@ -204,8 +207,8 @@ Game.prototype.score = function(p) {
   this.ball.y = p.y + p.height/2;
 
   // set ball velocity
-  this.ball.vy = Math.floor(Math.random()*8 - 6);
-  this.ball.vx = 7 - Math.abs(this.ball.vy);
+  this.ball.vy = Math.floor(Math.random()*INITIAL_SPEED - INITIAL_SPEED_OFFSET);
+  this.ball.vx = INITIAL_SPEED - Math.abs(this.ball.vy);
   if (player == 1)
       this.ball.vx *= -1;
 };

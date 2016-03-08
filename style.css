@@ -26,18 +26,11 @@ body {
 }
 
 h1 {
+  min-width: 300px;
   font-size: 72px;
-  background-color: #3093c7;
+  color: #aaa;
+  text-shadow: #aaa 0 0 10px;
   font-family: arial, helvetica, sans-serif;
-  background: -webkit-linear-gradient(top, #3093c7, #1c5a85);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#3093c7), to(#1c5a85));
-  background-image: -webkit-linear-gradient(top, #3093c7, #1c5a85);
-  background-image: -moz-linear-gradient(top, #3093c7, #1c5a85);
-  background-image: -ms-linear-gradient(top, #3093c7, #1c5a85);
-  background-image: -o-linear-gradient(top, #3093c7, #1c5a85);
-  background-image: linear-gradient(to bottom, #3093c7, #1c5a85);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#3093c7, endColorstr=#1c5a85);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 button {

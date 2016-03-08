@@ -23,7 +23,7 @@ KeyListener.prototype.isPressed = function(key) {
 
 KeyListener.prototype.addKeyPressListener = function(keyCode, callback) {
   document.addEventListener("keypress", function(e) {
-      if (e.keyCode == keyCode) {
+      if (e.charCode === keyCode) {
           callback(e);
       }
   });
