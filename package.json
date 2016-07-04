@@ -1,23 +1,29 @@
 {
-  "name": "game1",
-  "version": "1.0.0",
-  "description": "PONG",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "crunchicorn js/pong.js dist/pong.js"
+  "name": "creative",
+  "title": "Creative",
+  "version": "1.1.0",
+  "homepage": "http://startbootstrap.com/template-overviews/creative",
+  "author": "Start Bootstrap",
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE"
+  },
+  "devDependencies": {
+    "bootstrap": "^3.3.6",
+    "browser-sync": "^2.13.0",
+    "font-awesome": "^4.6.3",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.10",
+    "gulp-header": "^1.8.7",
+    "gulp-less": "^3.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.4",
+    "jquery": "^1.11.3",
+    "magnific-popup": "^1.1.0",
+    "scrollreveal": "^3.1.4"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adamwysocki/adamwysocki.github.io.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/adamwysocki/adamwysocki.github.io/issues"
-  },
-  "homepage": "https://github.com/adamwysocki/adamwysocki.github.io#readme",
-  "devDependencies": {
-    "crunchicorn": "0.0.2"
+    "url": "https://github.com/BlackrockDigital/startbootstrap-creative.git"
   }
 }
